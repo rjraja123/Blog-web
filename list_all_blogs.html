@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    th {
+        background-color: aqua;
+    }
+
+    table, td, th {
+        border: 1px solid black;
+        border-radius: 12px;
+    }
+</style>
+
+{% if current_user.is_authenticated %}
+    <h3>Welcome {{ current_user.username }}</h3>
+{% else %}
+    <h3>Welcome Guest</h3>
+{% endif %}
+
+<table>
+    <thead>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Content</th>
+        <th>Rating</th>
+        <th>Read Count</th>
+    </thead>
+    <tbody>
+        {% for blog in all_blogs %}
+        <tr>
+            <td>{{ blog.author.username }}</td>
+            <td>{{ blog.categorymaster.category_name }}</td>
+            <!-- <td>{{ all_category_name[blog.category_id - 1] }}</td> -->
+            {% if current_user.is_authenticated %}
+                <td><a href="/blogdetail/{{blog.id}}/{{all_users[blog.blog_user_id-1].username}}/{{ blog.categorymaster.category_name }}">{{ blog.blog_text }}</a></td>
+            {% else %}
+            <td>{{ blog.blog_text }}</td>
+            {% endif %}
+            <td>{{ blog.blog_rating_count }}</td>
+            <td>{{ blog.blog_read_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

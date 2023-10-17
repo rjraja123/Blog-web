@@ -1,0 +1,50 @@
+{%extends 'base.html' %}
+
+{% block content %}
+
+<center>
+    <h1>Hello {{current_user.username}}</h1><b>Your Authored Blogs are:</b>
+    <table style="border: 1px solid black; border-radius: 10px; padding: 3%; width: 80%;">
+        <thead>
+            <th style="background-color: #007bff; color: #fff; padding: 10px; border-radius: 5px;">
+                Category
+            </th>
+            
+            <th style="background-color: #ff5722; color: #fff; padding: 10px; border-radius: 5px;">
+                Content
+            </th>
+            
+            <th style="background-color: #4caf50; color: #fff; padding: 10px; border-radius: 5px;">
+                Read Count
+            </th>
+            
+            <th style="background-color: #f44336; color: #fff; padding: 10px; border-radius: 5px;">
+                Rating Count
+            </th>
+        </thead>
+        <br>
+        
+        <tbody>
+            {% for a_blog in all_self_blogs %}
+            <tr>
+                <td style="background-color: #007bff; color: #fff; padding: 10px; border-radius: 5px;">
+                    {{ all_categories[a_blog.category_id-1] }}
+                </td>
+                
+                <td>
+                    <a href="/self_blog_detail/{{a_blog.id}}/{{ all_categories[a_blog.category_id-1]}}">{{a_blog.blog_text|safe|truncate(275)}}</a>
+                </td>
+                <td>
+                    {{a_blog.blog_read_count}}
+                </td>
+                <td>
+                    {{a_blog.blog_rating_count}}
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+
+    </table>
+</center>
+{% endblock %}

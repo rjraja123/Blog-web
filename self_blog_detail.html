@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<center>
+    <h2>Welcome {{current_user.username}}</h2>
+    <form action="" method="POST">
+        <p>
+
+            <table style="border: 1px solid black; border-radius: 10px; padding: 3%; width: 80%;">
+
+                <tr>
+                    <td style="color: #007bff;">
+                        <b>Blog Content:</b>
+                    </td>
+                    
+                    <td>
+                        <textarea rows="20%" style="width: 80%;" name="blog_text">{{blog_text}}</textarea>
+                    </td>
+                </tr>
+
+            </table>
+            <br>
+            <input type="submit" name="action" value="Update" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+            <input type="submit" name="action" value="Delete" style="background-color: #f44336; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+
+        </p>
+    </form>
+</center>
+
+{% endblock %}

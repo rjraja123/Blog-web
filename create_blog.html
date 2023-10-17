@@ -1,0 +1,43 @@
+{%extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+<center>
+    <h2>Welcome {{current_user.username}}</h2>
+    <form action="" method="POST">
+        <p>
+
+            <table style="border: 1px solid black; border-radius: 10px; padding: 3%; width: 80%;">
+                <tr>
+                    <td style="width:20%; background-color: rgb(170, 164, 174);">
+                        Select the category
+                    </td>
+                    <td class="hover-blue">
+                        <select name="category_id" id="category_id">
+                            <option value="" selected disabled>Select Category</option>
+                            {% for category in all_categories %}
+                            <option value="{{ category.category_id }}" style="color: blue; background-color: white; font-size: 16px;">{{ category.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:20%;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='initial'">
+                        Blog Content:
+                    </td>
+                    
+                    <td>
+                        <textarea rows="10" style="width: 90%;" name="blog_text"></textarea>
+                    </td>
+                </tr>
+
+            </table>
+            <br>
+            <input type="submit" value="Insert" style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+
+        </p>
+    </form>
+</center>
+
+{% endblock %}
